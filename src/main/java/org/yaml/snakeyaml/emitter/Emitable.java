@@ -17,12 +17,12 @@ import java.io.IOException;
 import org.yaml.snakeyaml.events.Event;
 
 /**
- * Define a way to serialize an event to output stream
+ * Drefine a way to serialize an event to output stream
  */
 public interface Emitable {
 
   /**
-   * Serialise event to bytes
+   * Push event to bytes
    *
    * @param event - the source
    * @throws IOException if bytes bite

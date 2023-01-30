@@ -18,9 +18,9 @@ import org.yaml.snakeyaml.error.Mark;
 import org.yaml.snakeyaml.error.YAMLException;
 
 /**
- * Directive Token
+ * Token
  *
- * @param <T> it is either Integer for the YAML directive or String for the TAG directive
+ * @param <T>
  */
 public final class DirectiveToken<T> extends Token {
 

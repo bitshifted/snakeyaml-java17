@@ -13,8 +13,6 @@
  */
 package org.yaml.snakeyaml.constructor;
 
-import org.yaml.snakeyaml.LoaderOptions;
-
 /**
  * Construct instances with a custom Class Loader.
  */
@@ -25,23 +23,20 @@ public class CustomClassLoaderConstructor extends Constructor {
   /**
    * Create
    *
-   * @param loader - the class loader to find the class definition
-   * @param loadingConfig - options
+   * @param cLoader the class loader to find the class definition
    */
-  public CustomClassLoaderConstructor(ClassLoader loader, LoaderOptions loadingConfig) {
-    this(Object.class, loader, loadingConfig);
+  public CustomClassLoaderConstructor(ClassLoader cLoader) {
+    this(Object.class, cLoader);
   }
 
   /**
    * Create
    *
-   * @param loadingConfig - options
    * @param theRoot - the class to instantiate
    * @param theLoader - the class loader to find the class definition
    */
-  public CustomClassLoaderConstructor(Class<? extends Object> theRoot, ClassLoader theLoader,
-      LoaderOptions loadingConfig) {
-    super(theRoot, loadingConfig);
+  public CustomClassLoaderConstructor(Class<? extends Object> theRoot, ClassLoader theLoader) {
+    super(theRoot);
     if (theLoader == null) {
       throw new NullPointerException("Loader must be provided.");
     }
