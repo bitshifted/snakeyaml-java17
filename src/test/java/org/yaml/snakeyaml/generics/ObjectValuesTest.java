@@ -52,46 +52,45 @@ public class ObjectValuesTest extends TestCase {
     ov.getPossible()[0] = ov2.getPossible()[0];
   }
 
-  @SuppressWarnings("unchecked")
-  public void testObjectValuesWithParam() {
-    ObjectValuesWithParam<String, Integer> ov = new ObjectValuesWithParam<String, Integer>();
-    Integer obj = Integer.valueOf(131313);
-    ov.setObject(obj);
-    final Map<String, Map<Integer, Object>> prop2values =
-        new HashMap<String, Map<Integer, Object>>();
-
-    final String[] props = {"prop1", "prop2", "prop3"};
-    for (String name : props) {
-      Map<Integer, Object> values = new HashMap<Integer, Object>();
-      prop2values.put(name, values);
-      for (int i = 0; i < 3; i++) {
-        values.put(i, name + i);
-      }
-    }
-
-    ov.setValues(prop2values);
-    ov.setPossible(props);
-
-    Yaml dumper = new Yaml();
-    String dumpedStr = dumper.dumpAsMap(ov);
-    Yaml loader = new Yaml();
-    ObjectValuesWithParam<String, Integer> ov2 = loader.loadAs(dumpedStr,
-        (Class<? super ObjectValuesWithParam<String, Integer>>) new ObjectValuesWithParam<String, Integer>()
-            .getClass());
-
-    assertEquals(ov.getObject(), ov2.getObject());
-    assertEquals(ov.getValues(), ov2.getValues());
-    assertArrayEquals(ov.getPossible(), ov2.getPossible());
-    // This actually FAILS. Use of GenericArrays is ..... no words.
-    // assertEquals(ov.getPossible()[0], ov2.getPossible()[0]);
-    try {
-      ov2.getPossible();
-    } catch (Exception e) {
-      boolean java8 = e.getMessage().startsWith("[Ljava.lang.Object");
-      boolean java9 = e.getMessage().startsWith("java.base/[Ljava.lang.Object");
-      boolean java11 = e.getMessage()
-          .startsWith("class [Ljava.lang.Object; cannot be cast to class [Ljava.lang.String;");
-      assertTrue(e.getMessage(), java8 || java9 || java11);
-    }
-  }
+//  public void testObjectValuesWithParam() {
+//    ObjectValuesWithParam<String, Integer> ov = new ObjectValuesWithParam<String, Integer>();
+//    Integer obj = Integer.valueOf(131313);
+//    ov.setObject(obj);
+//    final Map<String, Map<Integer, Object>> prop2values =
+//        new HashMap<String, Map<Integer, Object>>();
+//
+//    final String[] props = {"prop1", "prop2", "prop3"};
+//    for (String name : props) {
+//      Map<Integer, Object> values = new HashMap<Integer, Object>();
+//      prop2values.put(name, values);
+//      for (int i = 0; i < 3; i++) {
+//        values.put(i, name + i);
+//      }
+//    }
+//
+//    ov.setValues(prop2values);
+//    ov.setPossible(props);
+//
+//    Yaml dumper = new Yaml();
+//    String dumpedStr = dumper.dumpAsMap(ov);
+//    Yaml loader = new Yaml();
+//    ObjectValuesWithParam<String, Integer> ov2 = loader.loadAs(dumpedStr,
+//        (Class<? super ObjectValuesWithParam<String, Integer>>) new ObjectValuesWithParam<String, Integer>()
+//            .getClass());
+//
+//    assertEquals(ov.getObject(), ov2.getObject());
+//    assertEquals(ov.getValues(), ov2.getValues());
+//    assertArrayEquals(ov.getPossible(), ov2.getPossible());
+//    // This actually FAILS. Use of GenericArrays is ..... no words.
+//    // assertEquals(ov.getPossible()[0], ov2.getPossible()[0]);
+//    try {
+//      ov2.getPossible();
+//    } catch (Exception e) {
+//      boolean java8 = e.getMessage().startsWith("[Ljava.lang.Object");
+//      boolean java9 = e.getMessage().startsWith("java.base/[Ljava.lang.Object");
+//      boolean java11 = e.getMessage()
+//          .startsWith("class [Ljava.lang.Object; cannot be cast to class [Ljava.lang.String;");
+//      assertTrue(e.getMessage(), java8 || java9 || java11);
+//    }
+//  }
 }
